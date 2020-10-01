@@ -247,7 +247,7 @@ class MultiSlater:
         if epos differs from the current position of electron e."""
         s = int(e >= self._nelec[0])
         aograd = np.real_if_close(
-            self._mol.eval_gto("GTOval_sph_deriv1", epos.configs), tol=1e4
+            self._mol.eval_gto(self.pbc_str + "GTOval_sph_deriv1", epos.configs), tol=1e4
         )
         mograd = aograd.dot(self.parameters[self._coefflookup[s]])
         mograd_vals = mograd[:, :, self._det_occup[s]]
